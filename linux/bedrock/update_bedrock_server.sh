@@ -1,7 +1,7 @@
 #!/bin/bash
 # update_bedrock_server.sh
 # Made by Motues with ❤️
-# 这是一个更新MC服务器的脚本, 可以自动备份就服务器, 更新MC服务器版本, 并复制配置文件
+# 这是一个更新MC服务器的脚本, 可以自动备份服务器, 并更新服务器版本, 复制配置文件
 # 使用方式:
 # ./update_bedrock_server.sh [update_file_prefix] [backup_file_prefix]
 # update_file_prefix: 最新版本文件夹的前缀, 默认为 bedrock_server
@@ -38,6 +38,12 @@ if ! $not_backup; then
     echo "======================================================================"
 fi
 
+# 用户确认
+read -p "请输入 y 继续, 其他键退出: " input
+if [ "$input" != "y" ]; then
+    echo "Info: 退出更新"
+    exit 0
+fi
 
 # 检测当前系统的包管理器
 detect_package_manager() {
@@ -106,7 +112,7 @@ if ! wget  --user-agent="Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/53
 fi
 
 
-# 备份将旧文件
+# 备份旧文件
 echo "Info:正在备份旧文件..."
 if ! $not_backup ; then
     echo "- $update_file_prefix 文件夹已存在, 正在备份..."

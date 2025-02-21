@@ -26,9 +26,17 @@ if [ ! -d "$backup_file_prefix" ]; then
     exit 1
 fi
 
-echo "需要还原的文件夹: $backup_file_prefix"
-echo "需要删除的文件夹: $update_file_prefix"
+echo "======================================================================"
+echo "                 需要还原的文件夹: $backup_file_prefix"
+echo "                 需要删除的文件夹: $update_file_prefix"
+echo "======================================================================"
 
+# 用户确认
+read -p "请输入 y 继续, 其他键退出: " input
+if [ "$input" != "y" ]; then
+    echo "Info: 退出更新"
+    exit 0
+fi
 
 # 删除新版本
 echo "Info: 正在删除 $update_file_prefix 文件夹..."
