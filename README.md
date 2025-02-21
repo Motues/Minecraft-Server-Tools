@@ -42,6 +42,18 @@
 * 备份目录：指定要恢复的备份路径（默认：bedrock_backup_YYYYMMDD）
 * 替换目录：指定要替换的目录（默认：bedrock_server）
 
+### 💾 备份脚本 `backup_bedrock_server.sh`
+```bash
+# 基础用法（默认备份目录）
+./backup_bedrock_server.sh
+
+# 自定义目录结构
+./backup_bedrock_server.sh [服务器目录] [备份后目录]
+```
+
+**参数说明**
+* 服务器目录：指定要备份的服务器路径（默认：bedrock_server）
+* 备份后目录：指定备份后要存放的目录（默认：bedrock_backup_YYYYMMDD）
 
 ## 🚀 参考实践
 
@@ -53,6 +65,7 @@
 git clone https://github.com/Motues/Minecraft-Server-Tools.git
 cp Minecraft-Server-Tools/linux/bedrock/update_bedrock_server.sh ~/Minecraft
 cp Minecraft-Server-Tools/linux/bedrock/back_bedrock_server.sh ~/Minecraft
+cp Minecraft-Server-Tools/linux/bedrock/backup_bedrock_server.sh ~/Minecraft
 ```
 
 在切换到服务器目录`~/Minecraft/`，执行以下命令便可以更新服务器的版本，完成备份
@@ -70,11 +83,16 @@ cd bedrock_server
 
 ### 回档
 
-在服务器目录`~/Minecraft/`下执行以下命令即可完成回档
+在服务器目录`~/Minecraft/`下执行以下命令即可完成回档，不更新服务器
 ```bash
 ./back_bedrock_server.sh bedrock_backup bedrock_server
 ```
 
+### 备份
+在服务器目录`~/Minecraft/`下执行以下命令即可完成备份
+```bash
+./backup_bedrock_server.sh bedrock_server bedrock_backup 
+```
 
 ## ⚠️ 注意事项
 1. 如果没有权限时需要给脚本添加执行权限
